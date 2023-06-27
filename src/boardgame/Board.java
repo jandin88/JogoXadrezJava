@@ -16,9 +16,15 @@ public class Board {
         return pieces[rows][collunms];
     }
     //fazendo uma sobrecagar no metodo para ele retorna as colluns e rows do position
-    public Piece piece(Position position){
+    public Piece piecpe(Position position){
         return pieces[position.getRow()][position.getRow()];
     }
+
+    public void placePiece(Piece piece, Position position){
+        pieces[position.getRow()][position.getColumn()]=piece;
+        piece.position=position;
+    }
+
 
     public int getRows() {
         return rows;
