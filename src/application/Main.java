@@ -20,23 +20,25 @@ public class Main {
                 clearScreen();
                 System.out.println();
                 Ui.printBoard(chessMatch.getPiece());
-                System.out.println("\033[H\033[2J");
+                System.out.println();
                 System.out.print("Source: ");
                 ChessPosition source = Ui.readChessPosition(sc);
 
                 boolean[][] posibleMoves=chessMatch.possibleMoves(source);
                 Ui.clearScreen();
+                 System.out.println();
                 Ui.printBoard(chessMatch.getPiece(),posibleMoves);
 
+                System.out.println();
                 System.out.print("Target: ");
                 ChessPosition target = Ui.readChessPosition(sc);
 
-                ChessPiece capturedPiece = chessMatch.perform(source, target);
+                ChessPiece capturedPizzece = chessMatch.perform(source, target);
             }catch(ChessException e){
-                System.out.println(e.getMessage()+ "\npress Enter");
+                System.out.println(e.getMessage()+ "\npreess Enter");
                 sc.nextLine();
             }catch (InputMismatchException e){
-                System.out.println(e.getMessage()+ "\n preess Enter");
+                System.out.println(e.getMessage()+ "\npreess Enter");
                 sc.nextLine();
 
             }
