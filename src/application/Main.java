@@ -23,6 +23,11 @@ public class Main {
                 System.out.println("\033[H\033[2J");
                 System.out.print("Source: ");
                 ChessPosition source = Ui.readChessPosition(sc);
+
+                boolean[][] posibleMoves=chessMatch.possibleMoves(source);
+                Ui.clearScreen();
+                Ui.printBoard(chessMatch.getPiece(),posibleMoves);
+
                 System.out.print("Target: ");
                 ChessPosition target = Ui.readChessPosition(sc);
 
