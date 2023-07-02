@@ -14,24 +14,24 @@ import chess.ChessPosition;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner sc=new Scanner(System.in);
-        ChessMatch chessMatch= new ChessMatch();
-        List<ChessPiece> captured=new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+        ChessMatch chessMatch = new ChessMatch();
+        List<ChessPiece> captured = new ArrayList<>();
 
-        while (true) {
-            
+        while (!chessMatch.getCheckMate()) {
+
             try {
                 clearScreen();
                 System.out.println();
-                Ui.printMatch(chessMatch,captured);  
+                Ui.printMatch(chessMatch, captured);
                 System.out.println();
                 System.out.print("Source: ");
                 ChessPosition source = Ui.readChessPosition(sc);
 
-                boolean[][] posibleMoves=chessMatch.possibleMoves(source);
+                boolean[][] posibleMoves = chessMatch.possibleMoves(source);
                 Ui.clearScreen();
-                 System.out.println();
-                Ui.printBoard(chessMatch.getPiece(),posibleMoves);
+                System.out.println();
+                Ui.printBoard(chessMatch.getPiece(), posibleMoves);
 
                 System.out.println();
                 System.out.print("Target: ");
@@ -39,17 +39,19 @@ public class Main {
 
                 ChessPiece capturedPiece = chessMatch.perform(source, target);
 
-                if(capturedPiece!=null){
+                if (capturedPiece != null) {
                     captured.add(capturedPiece);
                 }
-            }catch(ChessException e){
-                System.out.println(e.getMessage()+ "\npreess Enter");
+            } catch (ChessException e) {
+                System.out.println(e.getMessage() + "\npreess Enter");
                 sc.nextLine();
-            }catch (InputMismatchException e){
-                System.out.println(e.getMessage()+ "\npreess Enter");
+            } catch (InputMismatchException e) {
+                System.out.println(e.getMessage() + "\npreess Enter");
                 sc.nextLine();
 
             }
         }
+        Ui.clearScreen();
+        Ui.printMatch(chessMatch, captured);
     }
 }
